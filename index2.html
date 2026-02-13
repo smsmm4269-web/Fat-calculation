@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>حاسبة نسبة الدهون</title>
+    <style>
+        body{
+            font-family: Arial;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .box{
+            background: white;
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        input, select, button{
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        button{
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 7px;
+            transition: 1s;
+        }
+        button:hover{
+            background-color: #0056b3;
+        }
+        input{
+            border-radius: 9px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>حاسبة نسبة الدهون</h2>
+
+    <input type="number" id="weight" placeholder="الوزن بالكيلو">
+    <input type="number" id="height" placeholder="الطول بالسنتيمتر">
+    <input type="number" id="age" placeholder="العمر">
+
+    <select id="gender">
+        <option value="male">ذكر</option>
+        <option value="female">أنثى</option>
+    </select>
+
+    <button onclick="calculate()">احسب</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+function calculate() {
+    var weight = parseFloat(document.getElementById("weight").value);
+    var heightCm = parseFloat(document.getElementById("height").value);
+    var age = parseFloat(document.getElementById("age").value);
+    var gender = document.getElementById("gender").value;
+
+    var height = heightCm / 100; // تحويل لمتر
+    var bmi = weight / (height * height);
+
+    var bodyFat;
+
+    if (gender === "male") {
+        bodyFat = (1.20 * bmi) + (0.23 * age) - 16.2;
+    } else {
+        bodyFat = (1.20 * bmi) + (0.23 * age) - 5.4;
+    }
+
+    document.getElementById("result").innerHTML =
+        "نسبة الدهون تقريباً: " + bodyFat.toFixed(1) + "%";
+}
+</script>
+
+</body>
+</html>

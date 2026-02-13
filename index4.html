@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>حاسبة الوزن الطبيعي</title>
+<style>
+body{
+    font-family: Arial;
+    text-align: center;
+    background:#f2f2f2;
+}
+.box{
+    background:white;
+    width:300px;
+    margin:50px auto;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+input,button{
+    width:90%;
+    padding:8px;
+    margin:8px 0;
+}
+button{
+    background:#007bff;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+button:hover{
+    background:#0056b3;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>حاسبة الوزن الطبيعي</h2>
+
+<input type="number" id="height" placeholder="الطول بالسنتيمتر">
+<br>
+<input type="number" id="AGE" placeholder="دخل عمرك">
+<button onclick="calculateWeight()">احسب</button>
+
+<h3 id="result"></h3>
+</div>
+
+<script>
+function calculateWeight(){
+    var heightCm = parseFloat(document.getElementById("height").value);
+    var height = heightCm / 100;
+    var age=document.getElementById("Age")
+
+    var minWeight = 18.5 * (height * height);
+    var maxWeight = 24.9 * (height * height);
+
+    document.getElementById("result").innerHTML =
+        "وزنك الطبيعي من " + minWeight.toFixed(1) +
+        " كجم إلى " + maxWeight.toFixed(1) + " كجم";
+}
+</script>
+
+</body>
+</html>
